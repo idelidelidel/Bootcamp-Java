@@ -30,7 +30,13 @@ public class Laboratorio extends Conteudo {
 	} 
 
 	public void setProjetoFeito(boolean projetoFeito, Dev dev, int x) {
-		if((dev.getConteudosInscritos().isEmpty() == false) && dev.cargiHorariaTotal() > x)
+		/*Condicoes para aceitar:
+		 * Nao ter terminado os conteudos incritos (a variavel de controle garante
+		 * que o dev iniciou pelo menos um curso)
+		 * Uma cargo horaria minima para finalizar o projeto do laboratorio */
+		if((dev.getConteudosInscritos().isEmpty() == true)
+				&& (dev.cargiHorariaTotal() > x)
+				&& (dev.isControle() == true))
 			this.projetoFeito = projetoFeito;
 	}
 

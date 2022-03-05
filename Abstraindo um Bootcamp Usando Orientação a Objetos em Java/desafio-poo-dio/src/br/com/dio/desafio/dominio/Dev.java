@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class Dev {
 	private String nome;
+	private boolean controle = false;
 	private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
 	private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
@@ -19,6 +20,7 @@ public class Dev {
 	public void progredir() {
 		Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
 		if (conteudo.isPresent()) {
+			setControle(true);
 			this.conteudosConcluidos.add(conteudo.get());
 			this.conteudosInscritos.remove(conteudo.get());
 		} else {
@@ -28,6 +30,15 @@ public class Dev {
 
 	public double calcularTotalXp() {
 		return this.conteudosConcluidos.stream().mapToDouble(Conteudo::calcularXp).sum();
+	}
+	
+	
+	public boolean isControle() {
+		return controle;
+	}
+
+	public void setControle(boolean controle) {
+		this.controle = controle;
 	}
 
 	public String getNome() {
